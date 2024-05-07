@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delivery Tracking</title>
+<style>
+/* Inline CSS */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px;
+}
+
+h1 {
+  color: #333;
+}
+
+p {
+  color: #666;
+}
+
+#map {
+  height: 400px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group {
+  margin-top: 20px;
+}
+
+.input-group input {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Delivery Tracking</h1>
+  <p>Your delivery is currently in transit.</p>
+  <div id="map"></div>
+  <div class="input-group">
+    <input type="text" id="trackingID" placeholder="Enter Tracking ID or Order Number">
+    <button id="trackBtn" class="btn">Track</button>
+  </div>
+  <p id="status">Status: In Transit</p>
+  <p id="eta">ETA: 30 minutes</p>
+  <p>Sign up for notifications:</p>
+  <!-- Add your notification signup form here -->
+</div>
+
+<script>
+// Inline JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+  // Track button click event
+  document.getElementById('trackBtn').addEventListener('click', function() {
+    var trackingID = document.getElementById('trackingID').value;
+    // Simulate tracking request
+    console.log('Tracking request for ID:', trackingID);
+    // Call function to update delivery location on map
+    updateDeliveryLocation(trackingID);
+  });
+
+  function updateDeliveryLocation(trackingID) {
+    // Simulate data fetching for delivery location
+    var deliveryLocation = { 
+      lat: 40.712776, // Example latitude
+      lng: -74.005974 // Example longitude
+    };
+    // Update map with the new delivery location
+    updateMap(deliveryLocation);
+    // Update status and ETA (simulate data)
+    document.getElementById('status').textContent = 'Status: Out for Delivery';
+    document.getElementById('eta').textContent = 'ETA: 15 minutes';
+  }
+
+  function updateMap(deliveryLocation) {
+    // Create a new map centered at the delivery location
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: deliveryLocation
+    });
+
+    // Add a marker at the delivery location
+    var marker = new google.maps.Marker({
+      position: deliveryLocation,
+      map: map,
+      title: 'Delivery Location'
+    });
+  }
+});
+</script>
+<!-- Include Google Maps API script without API key -->
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+</body>
+</html>
